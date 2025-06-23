@@ -3,8 +3,19 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const redisUrl = process.env.REDIS_URL;
+
+if (!redisUrl) {
+  throw new Error('REDIS_URL is not defined in environment variables');
+}
+
 const redisClient = createClient({
-  url: process.env.REDIS_URL,
+  url: redisUrl,
+  socket: {
+    // These options are necessary only if you hit TLS certificate errors
+    tls: true,
+    rejectUnauthorized: false,
+  } as any // type-cast to avoid host warning
 });
 
 redisClient.on('error', (err) => console.error('Redis Client Error', err));
