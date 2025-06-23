@@ -1,5 +1,27 @@
-node_modules
-# Keep environment variables out of version control
+# Node.js
+node_modules/
+dist/
 .env
+.env.local
 
-/generated/prisma
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.sqlite
+prisma/migrations/
+
+# VSCode
+.vscode/
+
+# Redis (if dumping data locally)
+dump.rdb
